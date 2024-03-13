@@ -2,6 +2,9 @@
 import Input from "@/app/components/Input";
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import cors from 'cors'
 
 const defaultData = {
     name: "",
@@ -11,17 +14,29 @@ const defaultData = {
 
 const Register = () => {
     const [data, setData] = useState(defaultData);
+    const router = useRouter();
 
     const onValueChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
     };
 
-    const onRegister = (e) => {
+    const onRegister  = async(e) => {
         e.preventDefault(); 
 
         if (!data.name || !data.username || !data.password) {
             alert("Please fill up the mandatory fields");
             return;
+        }
+
+        //api call
+        try{
+            const response = await axios.post("api/users/register",data);
+            setData(defaultData);
+            if(response.status===200){
+                router.push("/login")
+            }
+        }catch(e){
+            console.log(e);
         }
     };
 

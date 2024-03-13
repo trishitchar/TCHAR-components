@@ -1,7 +1,11 @@
+// Don't import cors in a client-side component
+// import cors from 'cors';
 "use client"
 import Input from "@/app/components/Input";
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation"; 
 
 const defaultData = {
     username: "",
@@ -10,12 +14,13 @@ const defaultData = {
 
 const Login = () => {
     const [data, setData] = useState(defaultData);
+    const router = useRouter();
 
     const onValueChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
     };
 
-    const onLogin = (e) => {
+    const onLogin = async (e) => {
         e.preventDefault();
 
         if (!data.username || !data.password) {
@@ -23,7 +28,15 @@ const Login = () => {
             return;
         }
 
-        // TODO: Add logic for login or API call here
+        try {
+            const response = await axios.post("/api/users/login", data); 
+            setData(defaultData);
+            if (response.status === 200) {
+                router.push("/profile");
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -36,9 +49,9 @@ const Login = () => {
                         type="text"
                         id="username"
                         value={data.username}
-                        onChange={(e) => {
-                            onValueChange(e);
-                        }}
+                        onChange={
+                            onValueChange
+                        }
                     />
                     <Input
                         label="Password"
@@ -46,9 +59,9 @@ const Login = () => {
                         id="password"
                         autoComplete="new-password"
                         value={data.password}
-                        onChange={(e) => {
-                            onValueChange(e);
-                        }}
+                        onChange={
+                            onValueChange
+                        }
                     />
                     <button
                         className="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md w-full"
@@ -56,7 +69,7 @@ const Login = () => {
                             onLogin(e);
                         }}
                     >
-                        Submit
+                        Sign In
                     </button>
                     <p className="mt-4 text-center">
                         Don't have an account?{" "}

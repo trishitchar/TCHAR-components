@@ -1,19 +1,18 @@
 "use client"
 import Link from "next/link";
 import { useState } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Profile = () => {
   const [logoutStatus, setLogoutStatus] = useState(null);
+  const router = useRouter()
 
   const onLogout = async (e) => {
     e.preventDefault();
-    try {
-      // Your logout API call logic here
-      // Example: await axios.post('/logout');
-      setLogoutStatus('success');
-    } catch (error) {
-      console.error('Logout failed:', error);
-      setLogoutStatus('error');
+    const response  = await axios.get("api/users/logout");
+    if (response.status === 200) {
+      router.push('/login');
     }
   };
 
