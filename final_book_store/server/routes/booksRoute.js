@@ -48,14 +48,14 @@ router.get('/:id',async(req,res)=>{
     }
 })
 
-router.get('/:category', async (req, res) => {
+router.get('/book-type/:category', async (req, res) => {
     try {
       const category = req.params.category;
       const result = await Book.find({ category});
       if (result.length === 0) {
         return res.status(404).json({ message: `No books found in category: ${category}` });
       }
-      res.status(200).json({ message: `Books in category '${category}' retrieved successfully`, data: result });
+      return res.status(200).json({ message: 'Books in category retrieved successfully', data: result });
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: 'Server error' });
