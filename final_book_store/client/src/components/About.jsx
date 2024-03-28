@@ -1,8 +1,10 @@
 import React from 'react'
+import BannerCard from '../home/BannerCard'
 
 const About = () => {
+  console.log('about');
   return (
-    <div>About</div>
+    <div>About<BannerCard/> </div>
   )
 }
 

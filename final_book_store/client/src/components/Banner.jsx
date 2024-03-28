@@ -2,6 +2,7 @@ import React from 'react';
 import BannerCard from '../home/BannerCard';
 
 const Banner = () => {
+  console.log('BannerCard component rendered 33');
   return (
     <div className='px-4 lg:px-24 bg-teal-100 flex items-center'>
       <div className='flex w-full flex-col md:flex-row justify-between items-center gap-12 py-20 md:py-40'>

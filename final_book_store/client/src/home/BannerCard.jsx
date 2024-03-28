@@ -17,6 +17,7 @@ import book4 from '../assets/banner-books/book4.png';
 import book1 from '../assets/banner-books/book5.png';
 
 const BannerCard = () => {
+  console.log('BannerCard component rendered 22');
     return (
         <>
           <Swiper

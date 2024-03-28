@@ -12,8 +12,7 @@ const FavouriteBook = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        console.log(data.result); // Log the 'result' array from the fetched data
-        setBooks(data.result); // Update the state with the fetched books data
+        setBooks(data.result); 
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -23,8 +22,9 @@ const FavouriteBook = () => {
   }, []);
 
   return (
+    
     <div>
-      <BookCards books={books}/>
+      <BookCards books={books} headline="Best seller book"/>
     </div>
   );
 };
