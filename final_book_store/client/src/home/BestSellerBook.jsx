@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import BookCards from '../components/BookCards';
 
-const FavouriteBook = () => {
+const BestSellerBook = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ const FavouriteBook = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
-        setBooks(data.result); 
+        setBooks(data.result.slice(0,7)); 
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -29,4 +29,4 @@ const FavouriteBook = () => {
   );
 };
 
-export default FavouriteBook;
+export default BestSellerBook;
