@@ -37,12 +37,12 @@ const Review = () => {
         modules={[Pagination]}
         className="mySwiper"
       >
-        <SwiperSlide><ReviewDemo/></SwiperSlide>
-        <SwiperSlide><ReviewDemo/></SwiperSlide>
-        <SwiperSlide><ReviewDemo/></SwiperSlide>
-        <SwiperSlide><ReviewDemo/></SwiperSlide>
-        <SwiperSlide><ReviewDemo/></SwiperSlide>
-        
+        <SwiperSlide className='shadow-2xl rounded-lg border'><ReviewDemo/></SwiperSlide>
+        <SwiperSlide className='shadow-2xl rounded-lg border'><ReviewDemo/></SwiperSlide>
+        <SwiperSlide className='shadow-2xl rounded-lg border'><ReviewDemo/></SwiperSlide>
+        <SwiperSlide className='shadow-2xl rounded-lg border'><ReviewDemo/></SwiperSlide>
+        <SwiperSlide className='shadow-2xl rounded-lg border'><ReviewDemo/></SwiperSlide>
+
       </Swiper>
   </div>
   )
