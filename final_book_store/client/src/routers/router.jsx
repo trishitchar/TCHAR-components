@@ -60,7 +60,8 @@ import EditBook from "../dashboard/EditBook";
         },
         {
           path:"/admin/dashboard/edit/:id",
-          element:<EditBook/>
+          element:<EditBook/>,
+          loader:({params}) => fetch(`http://localhost:5000/books/${params.id}`)
         },
       ]
     }
